@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snow Animation</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow: hidden;
+    }
+    .snow {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      animation: fall var(--duration) var(--delay) linear infinite;
+    }
+
+    /* Snow particles dynamic styling */
+    body .snow {
+      --start-x: 0;
+      --end-x: 0;
+      --end-x-yoyo: 0;
+      --yoyo-time: 50%;
+      --yoyo-y: 50%;
+      --scale: 1;
+      --duration: 10s;
+      --delay: 0s;
+    }
+  </style>
+</head>
+<body>
+</body>
+<script src="../../static/test/snowtest.js"></script>
+</html>

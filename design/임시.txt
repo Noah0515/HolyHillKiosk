@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="default.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- 헤더영역. 여기에 바자회 이름이 있고, 직원의 경우 다른 페이지로 이동하는 버튼을 넣을 예정 -->
+    <header class="bg-dark py-3">
+        <div class="container px-4 px-lg-5 my-1">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">바자회 이름</h1>
+                <!--<p class="lead fw-normal text-white-50 mb-0">상세설명</p>-->
+            </div>
+        </div>
+    </header>
+
+    <!-- 좌우 화면 스플릿 영역. 왼쪽은 주문하기, 오른쪽은 주문내역 -->
+    <div class="split-container">
+        <!-- 왼쪽 스플릿-->
+        <div class="split left">
+            <!-- 음료, 음식 선택버튼 -->
+            <div class="category">
+                <button id="beverage-btn" class="category-btn btn-outline-dark">음료</button>
+                <button id="food-btn" class="category-btn btn-outline-dark">음식</button>
+            </div>
+            <!-- 음식메뉴 -->
+            <div id="food-menu" class="container px-3 py-4 px-lg-4 mt-4 menu-list">
+                <div class="menu-list-board row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    <!--소떡소떡-->
+                    <div class="col mb-4">
+                        <div id="sotteoksotteok" class="card h-90 choice-btn" data-menu-name="소떡소떡" data-menu-type="food", data-menu-option="true">
+                            <img class="card-img-top" src="https://i.namu.wiki/i/ohielGPjQmqPWq9amkhVKoHJg9xtW1ZDRfj09syKOdo41ecUQeq4sjolMPbWIuOMPq-xwbmAAe5w0G-myxVvMSd8i7hQdbP8ymBUnzUh-qd4zHuS3YgZKBF0FSbDmnqTlxDpCVZq06H6kBsyGQaJRQ.webp" alt="소떡소떡" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">소떡소떡</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--길거리 토스트-->
+                    <div class="col mb-4">
+                        <div id="streettoast" class="card h-90 choice-btn" data-menu-name="길거리 토스트" data-menu-type="food", data-menu-option="true">
+                            <img class="card-img-top" src="https://recipe1.ezmember.co.kr/cache/recipe/2021/12/28/cb2a8434a59394fd5a706979272c84e81.jpg" alt="길거리토스트" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">길거리<br>토스트</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--어묵-->
+                    <div class="col mb-4">
+                        <div id="Eomuk" class="card h-90 choice-btn" data-menu-name="어묵" data-menu-type="food", data-menu-option="false">
+                            <img class="card-img-top" src="https://thenaum.cdn-nhncommerce.com/data/goods/22/11/47/1000010531/1000010531_detail_011.jpg" alt="어묵" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">어묵</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--음식선택 모달-->
+            <div id="modal-food" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span id="close-modal-btn" class="close">&times;</span>
+                        <h2 id="modal-title">메뉴 상세</h2>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer py-2">
+
+                    </div>
+                </div>
+            </div>
+            <!-- 음료 메뉴 -->
+            <div id="beverage-menu" class="container px-3 py-4 px-lg-4 mt-4 menu-list">
+                <div class="menu-list-board row gx-3 gx-lg-4 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    <!--아이스아메리카노-->
+                    <div class="col mb-4">
+                        <div id="iceamericano" class="card h-90 choice-btn" data-menu-name="아이스 아메리카노" data-menu-type="beverage", data-menu-option="false">
+                            <img class="card-img-top" src="https://blog.kakaocdn.net/dn/TV63N/btqKsnRKsA3/VeHC48yzG20wow2lYT5yc0/img.png" alt="아이스 아메리카노" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">아이스 아메리카노</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--핫 아메리카노-->
+                    <div class="col mb-4">
+                        <div id="hotamericano" class="card h-90 choice-btn" data-menu-name="핫 아메리카노" data-menu-type="beverage", data-menu-option="false">
+                            <img class="card-img-top" src="https://foodcharge.co.kr/storage/app/public/thumbnails/1c/39/spill_800x800_749413cfceba41bc4d473a029356ae2486f59f75.png" alt="핫 아메리카노" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">핫 아메리카노</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--아이스티-->
+                    <div class="col mb-4">
+                        <div id="icetea" class="card h-90 choice-btn" data-menu-name="아이스티" data-menu-type="beverage", data-menu-option="false">
+                            <img class="card-img-top" src="https://mcdn.twosome.co.kr/upload/MOMG0030/202406/MOMG0030_20240625122532_AAKLNOFZ?width=600&height=600" alt="아이스티" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">아이스티</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--유자차-->
+                    <div class="col mb-4">
+                        <div id="yuzatea" class="card h-90 choice-btn" data-menu-name="유자차" data-menu-type="beverage", data-menu-option="false">
+                            <img class="card-img-top" src="https://cdn.news.hidoc.co.kr/news/photo/202011/23305_55439_0806.jpg" alt="유자차" />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">유자차</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--율무차-->
+                    <div class="col mb-4">
+                        <div id="yullmootea" class="card h-90 choice-btn" data-menu-name="율무차" data-menu-type="beverage", data-menu-option="false">
+                            <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0GudIolA7-Dj4TXF6KiuGs2qRuzhxByCpw&s" alt="율무차" />
+                            <div class="card-body p-3">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">율무차</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--선택된 메뉴 항목-->
+        <div class="split right">
+            <!--창 안내-->
+            <div class="choiced-menu">
+                <h2 >선택하신 메뉴</h2>
+            </div>
+            <div class="choiced-menu-list">
+
+            </div>
+        </div>
+    </div>
+    <footer class="py-2 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">모든 음식은 무료로 제공됩니다.</p></div>
+    </footer>
+
+    <script src="customer_order.js"></script>
+</body>
+
+</html>
