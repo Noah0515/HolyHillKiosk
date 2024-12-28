@@ -1,68 +1,57 @@
-CREATE TABLE `Beverage`
+CREATE TABLE beverage
 (
-    `beverageCode`    INT NOT NULL,
-    `beverageName`    VARCHAR(30) NOT NULL,
-    PRIMARY KEY ( `beverageCode` )
+    beveragecode    INT NOT NULL,
+    beveragename    VARCHAR(30) NOT NULL,
+    PRIMARY KEY (beveragecode)
 );
 
-
-CREATE TABLE `BeverageOrder`
+CREATE TABLE beverageorder
 (
-    `beverageOrderId`    CHAR(10) NOT NULL,
-    `orderTime`    DATETIME NOT NULL,
-    `orderId`    CHAR(3) NOT NULL,
-    `beverageOrderComplete`    BOOLEAN NOT NULL,
-    PRIMARY KEY ( `beverageOrderId` )
+    beverageorderid    CHAR(10) NOT NULL,
+    ordertime    DATETIME NOT NULL,
+    orderid    CHAR(3) NOT NULL,
+    beverageordercomplete    BOOLEAN NOT NULL,
+    PRIMARY KEY (beverageorderid)
 );
 
-
-CREATE TABLE `Food`
+CREATE TABLE food
 (
-    `foodCode`    INT NOT NULL,
-    `foodName`    VARCHAR(30) NOT NULL,
-    `foodOption`    BOOLEAN NOT NULL,
-    PRIMARY KEY ( `foodCode` )
+    foodcode    INT NOT NULL,
+    foodname    VARCHAR(30) NOT NULL,
+    foodoption    BOOLEAN NOT NULL,
+    PRIMARY KEY (foodcode)
 );
 
-
-CREATE TABLE `FoodOrder`
+CREATE TABLE foodorder
 (
-    `foodOrderId`    CHAR(10) NOT NULL,
-    `orderTime`    DATETIME NOT NULL,
-    `orderId`    CHAR(3) NOT NULL,
-    `foodOrderComplete`    BOOLEAN NOT NULL,
-    PRIMARY KEY ( `foodOrderId` )
+    foodorderid    CHAR(10) NOT NULL,
+    ordertime    DATETIME NOT NULL,
+    orderid    CHAR(3) NOT NULL,
+    foodordercomplete    BOOLEAN NOT NULL,
+    PRIMARY KEY (foodorderid)
 );
 
-
-CREATE TABLE `OrderedBeverage`
+CREATE TABLE orderedbeverage
 (
-    `beverageOrderId`    CHAR(10) NOT NULL,
-    `beverageCode`    INT NOT NULL,
-    `beverageNum`    INT NOT NULL,
-    PRIMARY KEY ( `beverageOrderId`,`beverageCode` )
+    beverageorderid    CHAR(10) NOT NULL,
+    beveragecode    INT NOT NULL,
+    beveragenum    INT NOT NULL,
+    PRIMARY KEY (beverageorderid, beveragecode)
 );
 
-
-CREATE TABLE `OrderedFood`
+CREATE TABLE orderedfood
 (
-    `foodOrderId`    CHAR(10) NOT NULL,
-    `foodCode`    INT NOT NULL,
-    `foodNum`    INT NOT NULL,
-    `optionChoice`    BOOLEAN NOT NULL,
-    PRIMARY KEY ( `foodOrderId`,`foodCode` )
+    foodorderid    CHAR(10) NOT NULL,
+    foodcode    INT NOT NULL,
+    foodnum    INT NOT NULL,
+    optionchoice    BOOLEAN NOT NULL,
+    PRIMARY KEY (foodorderid, foodcode)
 );
 
-
-CREATE TABLE `Orders`
+CREATE TABLE orders
 (
-    `orderTime`    DATETIME NOT NULL,
-    `orderId`    CHAR(3) NOT NULL,
-    `orderComplete`    BOOLEAN NOT NULL,
-    PRIMARY KEY ( `orderTime`,`orderId` )
+    ordertime    DATETIME NOT NULL,
+    orderid    CHAR(3) NOT NULL,
+    ordercomplete    BOOLEAN NOT NULL,
+    PRIMARY KEY (ordertime, orderid)
 );
-
-
-
-
-
