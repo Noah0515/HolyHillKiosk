@@ -1,3 +1,5 @@
+create database HolyHillKiosk
+
 CREATE TABLE beverage
 (
     beveragecode    INT NOT NULL,
