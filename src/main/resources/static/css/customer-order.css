@@ -268,16 +268,24 @@ body {
 .modal-img {
     padding: 1rem;
     border-radius: 1rem;
-    width: 70%;
-    height: 50%;
-    margin-bottom: 2rem;
+    width: 40%;
+    height: 40%;
+    margin-bottom: 0.5rem;
 }
+
+@media(min-height: 1000px) {
+    .modal-img {
+        width: 50%;
+        height: 50%;
+    }
+}
+
 
 .modal-menu-count {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 2rem;
+    margin: 1rem;
     gap: 2rem;
 }
 
@@ -288,6 +296,13 @@ body {
     height: 3rem;
 }
 
+#add-menu {
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 0.5rem;
+    width: 40%;
+    background-color: var(--bs-success);
+}
 
 .close {
     position: absolute;

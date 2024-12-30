@@ -14,7 +14,11 @@ public class BeverageWebSocketSessionManager {
     private final Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<>());
 
     public void addSession(WebSocketSession session) {
-        sessions.add(session);
+        if(session != null){
+            sessions.add(session);
+        } else {
+            throw new IllegalArgumentException("Session cannot be null");
+        }
     }
 
     public void removeSession(WebSocketSession session) {

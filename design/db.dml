@@ -1,3 +1,6 @@
+delete from food;
+delete from beverage;
+
 INSERT INTO food (foodcode, foodname, foodoption)
 VALUES (1, "길거리 토스트", true);
 
@@ -8,10 +11,10 @@ INSERT INTO food (foodcode, foodname, foodoption)
 VALUES (3, "어묵", false);
 
 INSERT INTO beverage (beveragecode, beveragename)
-VALUES (1, "아이스 아메리카노");
+VALUES (1, "핸드드립(아이스)");
 
 INSERT INTO beverage (beveragecode, beveragename)
-VALUES (2, "핫 아메리카노");
+VALUES (2, "핸드드립(핫)");
 
 INSERT INTO beverage (beveragecode, beveragename)
 VALUES (3, "아이스티");

@@ -223,6 +223,7 @@ public class OrderController {
         List<RemainFoodOrderDTO> remainFoodOrders = foodOrderService.findRemainFoodOrder();
 
         // JSON으로 변환
+
         String jsonResponse = objectMapper.writeValueAsString(remainFoodOrders);
         System.out.println(jsonResponse);
         // 클라이언트로 JSON 데이터를 보냄

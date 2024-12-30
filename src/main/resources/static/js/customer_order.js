@@ -12,16 +12,16 @@ const foodItems = document.getElementById('food-menu');
 메뉴 항목
  */
 let foodMenus = [
-    {name: "소떡소떡", menuCode: 1, menuOption: true, qty1: 0, qty2: 0, image: "https://i.namu.wiki/i/ohielGPjQmqPWq9amkhVKoHJg9xtW1ZDRfj09syKOdo41ecUQeq4sjolMPbWIuOMPq-xwbmAAe5w0G-myxVvMSd8i7hQdbP8ymBUnzUh-qd4zHuS3YgZKBF0FSbDmnqTlxDpCVZq06H6kBsyGQaJRQ.webp"},
-    {name: "길거리토스트", menuCode: 2, menuOption: true, qty1: 0, qty2: 0, image: "https://recipe1.ezmember.co.kr/cache/recipe/2021/12/28/cb2a8434a59394fd5a706979272c84e81.jpg"},
-    {name: "어묵", menuCode: 3, menuOption: false, qty1:0, qty2: 0, image: "https://thenaum.cdn-nhncommerce.com/data/goods/22/11/47/1000010531/1000010531_detail_011.jpg"}
+    {name: "소떡소떡", menuCode: 1, menuOption: true, qty1: 0, qty2: 0, image: "../img/소떡소떡.png"},
+    {name: "길거리토스트", menuCode: 2, menuOption: true, qty1: 0, qty2: 0, image: "../img/길거리토스트.png"},
+    {name: "어묵", menuCode: 3, menuOption: false, qty1:0, qty2: 0, image: "../img/어묵.png"}
 ];
 let beverageMenus = [
-    {name: "아이스 아메리카노", menuCode: 1, menuOption: false, qty1: 0, qty2: 0, image: "https://blog.kakaocdn.net/dn/TV63N/btqKsnRKsA3/VeHC48yzG20wow2lYT5yc0/img.png"},
-    {name: "핫 아메리카노", menuCode: 2, menuOption: false, qty1: 0, qty2: 0, image: "https://foodcharge.co.kr/storage/app/public/thumbnails/1c/39/spill_800x800_749413cfceba41bc4d473a029356ae2486f59f75.png"},
-    {name: "아이스티", menuCode: 3, menuOption: false, qty1: 0, qty2: 0, image: "https://mcdn.twosome.co.kr/upload/MOMG0030/202406/MOMG0030_20240625122532_AAKLNOFZ?width=600&height=600"},
-    {name: "유자차", menuCode: 4, menuOption: false, qty1: 0, qty2: 0, image: "https://cdn.news.hidoc.co.kr/news/photo/202011/23305_55439_0806.jpg"},
-    {name: "율무차", menuCode: 5, menuOption: false, qty1: 0, qty2: 0, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB0GudIolA7-Dj4TXF6KiuGs2qRuzhxByCpw&s"}
+    {name: "핸드드립(아이스)", menuCode: 1, menuOption: false, qty1: 0, qty2: 0, image: "../img/핸드드립_아이스.png"},
+    {name: "핸드드립(핫)", menuCode: 2, menuOption: false, qty1: 0, qty2: 0, image: "../img/핸드드립_핫.png"},
+    {name: "아이스티", menuCode: 3, menuOption: false, qty1: 0, qty2: 0, image: "../img/아이스티.png"},
+    {name: "유자차", menuCode: 4, menuOption: false, qty1: 0, qty2: 0, image: "../img/유자차.png"},
+    {name: "율무차", menuCode: 5, menuOption: false, qty1: 0, qty2: 0, image: "../img/율무차.png"}
 ];
 
 
@@ -397,23 +397,7 @@ submitOrder.addEventListener("click", () => {
     });
 
 });
-/*
-.then(response => {
-        if (response.ok) {
-            console.log("응답이 성공적임");
-            // 성공적으로 리다이렉트된 URL 확인
-            if (response.redirected) {
-                console.log("리다이렉트 URL: " + response.url);
-                //window.location.replace(response.url); // 이 방법을 사용하여 페이지 새로 고침 없이 이동
-                //window.location.href = response.url;
-            }
-        } else {
-            console.error("응답이 실패함", response.status, response.statusText);
-        }
-    }).catch(error => {
-        console.error("Error during fetch:", error);
-    });
- */
+
 function createOrderJson() {
     let foodOrder = foodMenus.flatMap(item => {
         let orderItems = [];
