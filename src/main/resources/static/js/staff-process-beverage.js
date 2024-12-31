@@ -1,4 +1,4 @@
-const socket = new WebSocket("wss://192.168.219.106/wsb/staff/processBeverage");
+const socket = new WebSocket("ws://124.58.30.200:8080/wsb/staff/processBeverage");
 
 socket.onopen = () => {
     console.log("웹소켓 연결됨");
