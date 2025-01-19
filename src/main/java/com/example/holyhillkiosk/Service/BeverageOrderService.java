@@ -7,6 +7,7 @@ import com.example.holyhillkiosk.Repository.BeverageOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +25,18 @@ public class BeverageOrderService {
 
     public List<RemainBeverageOrderDTO> findRemainBeverageOrder(){
         List<Object[]> results = beverageOrderRepository.findRemainBeverageOrder();
+
+        for (Object[] row : results) {
+            System.out.println(Arrays.toString(row)); // 각 Object[]의 내용을 출력
+        }
+
         return results.stream()
                 .map(row -> new RemainBeverageOrderDTO(
                         convertToLong(row[0]), // orderId
                         (String) row[1],              // foodName
                         ((Number) row[2]).intValue(), // foodNum
-                        (String) row[3] // foodOrderId
+                        (String) row[3], // foodOrderId
+                        ((Number) row[5]).intValue()
                 ))
                 .collect(Collectors.toList());
     }
@@ -72,6 +79,7 @@ public class BeverageOrderService {
     }
 
     public void updateComplete(String pk){
+        System.out.println("음료항목 업데이트");
         beverageOrderRepository.updateComplete(pk);
     }
 }

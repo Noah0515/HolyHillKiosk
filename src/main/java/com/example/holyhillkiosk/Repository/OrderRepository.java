@@ -24,8 +24,11 @@ public interface OrderRepository extends CrudRepository<Orders, OrdersId> {
     @Modifying
     @Query(value = """
     UPDATE orders
-    SET ordercomplete = true
+    SET ordercomplete = ordercomplete + 1
     WHERE ordertime = :ordertime AND orderid = :orderid
     """, nativeQuery = true)
     void updateOrderCompletion(@Param("ordertime") Timestamp ordertime, @Param("orderid") String orderid);
+
+    @Query(value = "SELECT orderid FROM orders WHERE orderComplete = 1", nativeQuery = true)
+    List<String> findIncompleteOrders();
 }

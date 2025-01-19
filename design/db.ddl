@@ -1,4 +1,5 @@
-create database HolyHillKiosk
+create database HolyHillKiosk;
+use HolyHillKiosk;
 
 CREATE TABLE beverage
 (
@@ -12,7 +13,8 @@ CREATE TABLE beverageorder
     beverageorderid    CHAR(10) NOT NULL,
     ordertime    DATETIME NOT NULL,
     orderid    CHAR(3) NOT NULL,
-    beverageordercomplete    BOOLEAN NOT NULL,
+    /*beverageordercomplete    BOOLEAN NOT NULL,*/
+    beverageordercomplete    INT NOT NULL,
     PRIMARY KEY (beverageorderid)
 );
 
@@ -29,7 +31,8 @@ CREATE TABLE foodorder
     foodorderid    CHAR(10) NOT NULL,
     ordertime    DATETIME NOT NULL,
     orderid    CHAR(3) NOT NULL,
-    foodordercomplete    BOOLEAN NOT NULL,
+    /*foodordercomplete    BOOLEAN NOT NULL,*/
+    foodordercomplete    INT NOT NULL,
     PRIMARY KEY (foodorderid)
 );
 
@@ -54,6 +57,7 @@ CREATE TABLE orders
 (
     ordertime    DATETIME NOT NULL,
     orderid    CHAR(3) NOT NULL,
-    ordercomplete    BOOLEAN NOT NULL,
+    /*ordercomplete    BOOLEAN NOT NULL,*/
+    ordercomplete INT NOT NULL,
     PRIMARY KEY (ordertime, orderid)
 );

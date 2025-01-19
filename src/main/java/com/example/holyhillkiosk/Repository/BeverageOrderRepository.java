@@ -13,24 +13,24 @@ import java.util.List;
 @Repository
 public interface BeverageOrderRepository extends CrudRepository<BeverageOrder, String> {
     @Query(value = """
-            SELECT CAST(bo.orderid AS CHAR) AS orderid, bi.beveragename, bi.beveragenum, bo.beverageorderid, bi.beveragecode
+            SELECT CAST(bo.orderid AS CHAR) AS orderid, bi.beveragename, bi.beveragenum, bo.beverageorderid, bi.beveragecode, bo.beverageordercomplete
             FROM (
                 SELECT beveragename, beveragenum, beverageorderid, beverage.beveragecode
                 FROM orderedbeverage
                 JOIN beverage ON orderedbeverage.beveragecode = beverage.beveragecode
             ) AS bi,
             (
-                SELECT beverageorderid, orderid
+                SELECT beverageorderid, orderid, beverageordercomplete
                 FROM beverageorder
-                WHERE beverageordercomplete = false
+                WHERE beverageordercomplete < 2
             ) AS bo
             WHERE bi.beverageorderid = bo.beverageorderid
             ORDER BY bo.orderid, bi.beveragecode
             """, nativeQuery = true)
     List<Object[]> findRemainBeverageOrder();
-
+    //WHERE beverageordercomplete = false
     @Query(value = """
-    SELECT ordertime, orderid 
+    SELECT ordertime, orderid
     FROM beverageorder 
     WHERE beverageorderid = :beverageorderid
     """, nativeQuery = true)
@@ -40,7 +40,7 @@ public interface BeverageOrderRepository extends CrudRepository<BeverageOrder, S
     @Modifying
     @Query(value = """
     update beverageorder 
-    set beverageordercomplete = true 
+    set beverageordercomplete = beverageordercomplete + 1
     where beverageorderid = :beverageorderid
     """, nativeQuery = true)
     void updateComplete(@Param("beverageorderid") String beverageorderid);

@@ -13,8 +13,8 @@ public class Orders {
     @EmbeddedId
     private OrdersId id; //Orders의 PK(orderTime, orderId)
     @Column(name="ordercomplete")
-    private boolean orderComplete; //완료된 주문인지
-
+    //private boolean orderComplete; //완료된 주문인지
+    private int orderComplete;
     //매핑 안되는 변수
     @OneToMany(mappedBy = "order")
     private List<FoodOrder> foodOrder = new ArrayList<>();
@@ -24,7 +24,8 @@ public class Orders {
     //생성자
     public Orders(){
         id = new OrdersId();
-        orderComplete = false;
+        //orderComplete = false;
+        orderComplete = 0;
     }
 
     //주문시각 반환

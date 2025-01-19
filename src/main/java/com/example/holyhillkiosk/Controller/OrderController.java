@@ -1,13 +1,11 @@
 package com.example.holyhillkiosk.Controller;
 
-import com.example.holyhillkiosk.DTO.OrderedBeverageDTO;
-import com.example.holyhillkiosk.DTO.OrderedFoodDTO;
-import com.example.holyhillkiosk.DTO.RemainBeverageOrderDTO;
-import com.example.holyhillkiosk.DTO.RemainFoodOrderDTO;
+import com.example.holyhillkiosk.DTO.*;
 import com.example.holyhillkiosk.Entity.*;
 import com.example.holyhillkiosk.Service.*;
 import com.example.holyhillkiosk.WebSocket.BeverageWebSocketSessionManager;
 import com.example.holyhillkiosk.WebSocket.WebSocketSessionManager;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,8 @@ import java.util.Map;
 @RestController
 public class OrderController {
     private final OrderService orderService;
+    private final FoodService foodService;
+    private final BeverageService beverageService;
     private final FoodOrderService foodOrderService;
     private final BeverageOrderService beverageOrderService;
     private final OrderedFoodService orderedFoodService;
@@ -40,8 +40,10 @@ public class OrderController {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    public OrderController(OrderService orderService, FoodOrderService foodOrderService, BeverageOrderService beverageOrderService, OrderedFoodService orderedFoodService, OrderedBeverageService orderedBeverageService, NotificationService notificationService) {
+    public OrderController(OrderService orderService, FoodService foodService, BeverageService beverageService, FoodOrderService foodOrderService, BeverageOrderService beverageOrderService, OrderedFoodService orderedFoodService, OrderedBeverageService orderedBeverageService, NotificationService notificationService) {
         this.orderService = orderService;
+        this.foodService = foodService;
+        this.beverageService = beverageService;
         this.foodOrderService = foodOrderService;
         this.beverageOrderService = beverageOrderService;
         this.orderedFoodService = orderedFoodService;
@@ -239,5 +241,26 @@ public class OrderController {
         System.out.println(jsonResponse);
         // 클라이언트로 JSON 데이터를 보냄
         session.sendMessage(new TextMessage(jsonResponse));
+    }
+
+    @GetMapping("/staff/completeOrder")
+    public List<String> getCompleteOrder() throws JsonProcessingException {
+        List<String> result = orderService.findIncompleteOrders();
+        System.out.println(result);
+        return result;
+    }
+
+    @GetMapping("/staff/foodStatistic")
+    public List<FoodStatisticDTO> getFoodStatistic(){
+        System.out.println("음식통계");
+        //System.out.println(foodService.getFoodStatistic());
+        return foodService.getFoodStatistic();
+    }
+
+    @GetMapping("/staff/beverageStatistic")
+    public List<BeverageStatisticDTO> getBeverageStatistic(){
+        System.out.println("음식통계");
+        //System.out.println(beverageService.getBeverageStatistic());
+        return beverageService.getBeverageStatistic();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -21,5 +22,9 @@ public class OrderService {
 
     public void completeOrder(Timestamp ordertime, String orderid) {
         orderRepository.updateOrderCompletion(ordertime, orderid);
+    }
+
+    public List<String> findIncompleteOrders(){
+        return orderRepository.findIncompleteOrders();
     }
 }

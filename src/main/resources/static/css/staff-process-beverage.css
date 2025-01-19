@@ -219,6 +219,10 @@ body {
     background-color: var(--bs-gray-dark);
 }
 
+.order-bg {
+    background-color: var(--bs-cyan);
+}
+
 /* 화면이 세로로 더 길 경우 상하 스플릿 */
 @media (max-aspect-ratio: 1/1) {
     .split-container {

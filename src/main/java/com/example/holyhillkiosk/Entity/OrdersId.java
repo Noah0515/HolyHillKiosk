@@ -16,7 +16,7 @@ public class OrdersId implements Serializable {
     @Transient
     private static int curOrderNum = 0;
     @Transient
-    private static int MAX_ORDER_NUM = 999;
+    private static int MAX_ORDER_NUM = 3000;
     @Transient
     private static LocalDate curDate = LocalDate.now();
 

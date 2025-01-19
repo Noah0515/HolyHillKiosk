@@ -3,23 +3,36 @@ const socket = new WebSocket("ws://124.58.30.200:8080/wsf/staff/processFood");
 socket.onopen = () => {
     console.log("웹소켓 연결됨");
     socket.send("/refresh");
+
 };
 
-let remainFoodOrders
+let remainFoodOrders;
+
 socket.onmessage = (event) => {
     remainFoodOrders = JSON.parse(event.data);
     console.log(remainFoodOrders); // 받은 데이터 로그 출력
     renderOrderList();
 };
 
-const selectedOrder = [];
+
 function sendMessage() {
     const input = document.getElementById("input");
     socket.send(input.value);
     input.value = "";
+
+    //
+    selectedOrder = [];
 }
 
 function renderOrderList(){
+    let selectedOrder = [];
+
+    const submitBtn = document.querySelector(".submit-btn");
+
+
+
+
+
     const groupedOrders = remainFoodOrders.reduce((acc, curr) => {
         if (!acc[curr.orderId]) {
             acc[curr.orderId] = [];
@@ -36,11 +49,21 @@ function renderOrderList(){
     Object.keys(groupedOrders).forEach(orderId => {
         const orderData = groupedOrders[orderId];
         const foodOrderId = orderData[0].foodOrderId;
+        const foodOrderComplete = orderData[0].foodOrderComplete;
         // 주문을 위한 div
-        let orderHtml = `
+        let orderHtml;
+
+        if(foodOrderComplete === 0){
+            orderHtml = `
                     <div class="order-each" id="order${orderId}" data-orderId=${foodOrderId}>
                         <div class="order-id">${orderId.toString().padStart(3, '0')}</div>
                         <div class="order-menu-list">`;
+        } else {
+            orderHtml = `
+                    <div class="order-each order-bg" id="order${orderId}" data-orderId=${foodOrderId}>
+                        <div class="order-id">${orderId.toString().padStart(3, '0')}</div>
+                        <div class="order-menu-list">`;
+        }
 
         // 메뉴 항목들을 음식 이름별로 그룹화
         const menuMap = new Map(); // 음식 이름을 기준으로 그룹화
@@ -92,16 +115,17 @@ function renderOrderList(){
             }
         });
     });
+
+    submitBtn.addEventListener("click", () => {
+        const choicedOrder = JSON.stringify(selectedOrder);
+        socket.send(JSON.stringify({
+            message: "/process",
+            data: choicedOrder
+        }));
+        selectedOrder = [];
+    })
 }
 
-const submitBtn = document.querySelector(".submit-btn");
-submitBtn.addEventListener("click", () => {
-    const choicedOrder = JSON.stringify(selectedOrder);
-    socket.send(JSON.stringify({
-        message: "/process",
-        data: choicedOrder
-    }));
-})
 
 const orderPageBtn = document.getElementById("order-page");
 const foodOrderBtn = document.getElementById("food-page");

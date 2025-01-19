@@ -29,7 +29,8 @@ public class FoodOrderService {
                         (String) row[1],              // foodName
                         ((Number) row[2]).intValue(), // foodNum
                         convertToString(row[3]),              // optionChoice
-                        (String) row[4] // foodOrderId
+                        (String) row[4],
+                        ((Number) row[6]).intValue()// foodOrderId
                 ))
                 .collect(Collectors.toList());
     }

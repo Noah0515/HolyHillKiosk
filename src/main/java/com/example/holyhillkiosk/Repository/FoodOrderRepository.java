@@ -13,14 +13,14 @@ import java.util.List;
 @Repository
 public interface FoodOrderRepository extends CrudRepository<FoodOrder, String> {
     @Query(value = """
-        SELECT CAST(fo.orderid AS CHAR) AS orderid, fi.foodname, fi.foodnum, fi.optionchoice, fo.foodorderid, fi.foodcode
+        SELECT CAST(fo.orderid AS CHAR) AS orderid, fi.foodname, fi.foodnum, fi.optionchoice, fo.foodorderid, fi.foodcode, fo.foodordercomplete
         FROM 
             (SELECT foodname, foodnum, optionchoice, foodorderid, food.foodcode
              FROM orderedfood, food
              WHERE orderedfood.foodcode = food.foodcode) AS fi,
-            (SELECT foodorderid, orderid 
+            (SELECT foodorderid, orderid, foodordercomplete 
              FROM foodorder
-             WHERE foodordercomplete = false) AS fo
+             WHERE foodordercomplete < 2) AS fo
         WHERE 
             fi.foodorderid = fo.foodorderid
         order by fo.orderid, fi.foodcode;
@@ -38,7 +38,7 @@ public interface FoodOrderRepository extends CrudRepository<FoodOrder, String> {
     @Modifying
     @Query(value = """
     update foodorder 
-    set foodordercomplete = true 
+    set foodordercomplete = foodordercomplete + 1 
     where foodorderid = :foodorderid
     """, nativeQuery = true)
     void updateComplete(@Param("foodorderid") String foodorderid);

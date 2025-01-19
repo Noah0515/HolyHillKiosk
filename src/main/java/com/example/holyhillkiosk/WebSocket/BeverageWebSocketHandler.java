@@ -73,6 +73,7 @@ public class BeverageWebSocketHandler extends TextWebSocketHandler {
         String jsonResponse = objectMapper.writeValueAsString(remainBeverageOrders);
         System.out.println(jsonResponse);
         // 클라이언트로 JSON 데이터를 보냄
+        //System.out.println(jsonResponse);
         session.sendMessage(new TextMessage(jsonResponse));
     }
 
@@ -82,7 +83,6 @@ public class BeverageWebSocketHandler extends TextWebSocketHandler {
         // jsonData는 JSON 배열 형식이라 가정
         List<String> orderIds = objectMapper.readValue(jsonData, new TypeReference<List<String>>(){});
 
-        ;
         for(String orderId: orderIds){
             List<Object[]> result = beverageOrderService.findOrdersPK(orderId);
             Object[] row = result.get(0);
